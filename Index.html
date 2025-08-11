@@ -762,4 +762,53 @@
         offerTitle.textContent = 'Adquira Seu Ebook Agora';
       }
       
-      // Update count
+     // Update countdown container
+      const countdownContainer = document.querySelector('.countdown-container');
+      if (countdownContainer) {
+        countdownContainer.style.display = 'none';
+      }
+    }
+
+    // Purchase redirect com lógica de preço (duplicada para garantir funcionalidade)
+    function handlePurchase() {
+      const promoExpired = getCookie('promoExpired');
+      if (promoExpired === 'true') {
+        window.open('https://pay.kiwify.com.br/BPapRuf', '_blank');
+      } else {
+        window.open('https://bit.ly/Odespertardoguerreirointerior', '_blank');
+      }
+    }
+
+    // Imagem alternativa caso falhe
+    function handleImageLoad() {
+      const bookImage = document.querySelector('.book-image');
+      if (bookImage) {
+        bookImage.onerror = function() {
+          this.style.display = 'none';
+          this.nextElementSibling.style.display = 'block';
+        };
+      }
+    }
+
+    // Animações de scroll
+    function handleScrollAnimations() {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    }
+
+    // Inicialização
+    window.addEventListener('scroll', handleScrollAnimations);
+    window.addEventListener('load', function() {
+      handleScrollAnimations();
+      handleImageLoad();
+      startCountdown();
+    });
+  </script>
+</body>
+</html>
