@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>O Despertar do Guerreiro Interior</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      height: 100vh;
+      background: linear-gradient(135deg, #0a0a0a 0%, #4a0e0e 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 20px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at center, rgba(255,0,0,0.3) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+    }
+
+    .book-cover {
+      margin: 2rem 0;
+    }
+
+    .book-image {
+      max-width: 280px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(255,0,0,0.5);
+      transition: all 0.3s ease;
+    }
+
+    .book-image:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(255,0,0,0.7);
+    }
+
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      background: linear-gradient(45deg, #fff, #ff0000);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero h2 {
+      font-size: 1.4rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      color: #ff0000;
+    }
+
+    .btn-primary {
+      background: linear-gradient(45deg, #cc0000, #ff0000);
+      color: #fff;
+      padding: 18px 40px;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(45deg, #990000, #cc0000);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255,0,0,0.6);
+    }
+
+    /* Content Sections */
+    .section {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #fff;
+    }
+
+    .section p {
+      font-size: 1.2rem;
+      color: #ddd;
+      margin-bottom: 2rem;
+      text-align: center;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Benefits Grid */
+    .benefits {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-top: 3rem;
+    }
+
+    .benefit {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+      padding: 30px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(255,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .benefit:hover {
+      transform: translateY(-5px);
+      border-color: rgba(255,0,0,0.3);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .benefit-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #ff0000;
+    }
+
+    .benefit-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .benefit-desc {
+      color: #bbb;
+      line-height: 1.5;
+    }
+
+    /* Content Overview */
+    .content-overview {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 40px;
+      border-radius: 15px;
+      margin-top: 3rem;
+      border-left: 5px solid #ff0000;
+    }
+
+    .chapter {
+      display: flex;
+      align-items: center;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .chapter:last-child {
+      border-bottom: none;
+    }
+
+    .chapter-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ff0000;
+      margin-right: 20px;
+      min-width: 50px;
+    }
+
+    .chapter-content h4 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #fff;
+      margin: 0 0 5px 0;
+    }
+
+    .chapter-content p {
+      font-size: 1rem;
+      color: #bbb;
+      margin: 0;
+      text-align: left;
+    }
+
+    /* Offer Section */
+    .offer {
+      background: linear-gradient(135deg, #0a0a0a 0%, #4a0e0e 100%);
+      text-align: center;
+      padding: 80px 20px;
+      border-top: 3px solid #ff0000;
+    }
+
+    .offer h2 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: #fff;
+    }
+
+    .price-container {
+      margin: 2rem 0;
+    }
+
+    .price-old {
+      font-size: 1.5rem;
+      color: #888;
+      text-decoration: line-through;
+      margin-right: 15px;
+    }
+
+    .price-new {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #ff0000;
+    }
+
+    .guarantee-box {
+      background: rgba(0,0,0,0.3);
+      padding: 25px;
+      border-radius: 10px;
+      margin: 30px auto;
+      max-width: 500px;
+      border: 1px solid rgba(255,0,0,0.2);
+    }
+
+    .guarantee-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #ff0000;
+      margin-bottom: 10px;
+    }
+
+    .guarantee-text {
+      font-size: 0.95rem;
+      color: #ddd;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Countdown Timer */
+    .countdown-container {
+      background: #000;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px auto;
+      max-width: 400px;
+      border: 2px solid #ff0000;
+    }
+
+    .countdown-timer {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #ff0000;
+      margin-bottom: 5px;
+    }
+
+    .countdown-label {
+      color: #fff;
+      font-size: 0.9rem;
+    }
+
+    /* Final CTA */
+    .final-cta {
+      background: #000;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .final-cta h3 {
+      font-size: 2rem;
+      color: #ff0000;
+      margin-bottom: 20px;
+    }
+
+    .final-cta p {
+      font-size: 1.1rem;
+      color: #ddd;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    .footer {
+      background: #0a0a0a;
+      padding: 40px 20px;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    .footer p {
+      color: #888;
+      margin: 5px 0;
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+      
+      .hero h2 {
+        font-size: 1.2rem;
+      }
+      
+      .section {
+        padding: 60px 20px;
+      }
+      
+      .section h2 {
+        font-size: 2rem;
+      }
+      
+      .benefits {
+        grid-template-columns: 1fr;
+      }
+      
+      .chapter {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+      }
+      
+      .chapter-number {
+        margin-bottom: 10px;
+      }
+      
+      .countdown-timer {
+        font-size: 1.8rem;
+      }
+      
+      .price-new {
+        font-size: 2.8rem;
+      }
+    }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>O Despertar do Guerreiro Interior</h1>
+      
+      <div class="book-cover">
+        <img src="capa.jpg" alt="O Despertar do Guerreiro Interior" class="book-image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" />
+        <div style="display: none; background: linear-gradient(135deg, #1c1c1c 0%, #2a2a2a 100%); padding: 40px; border-radius: 12px; border: 2px solid #ff0000; max-width: 280px; margin: 0 auto;">
+          <div style="font-size: 4rem; color: #ff0000; margin-bottom: 15px;">📚</div>
+          <h3 style="color: #fff; font-size: 1.4rem; margin: 0 0 10px 0;">O Despertar do</h3>
+          <h3 style="color: #ff0000; font-size: 1.6rem; margin: 0 0 15px 0; font-weight: 700;">GUERREIRO INTERIOR</h3>
+          <p style="color: #ddd; font-size: 1rem; margin: 0;">Desperte a Disciplina e a Sabedoria</p>
+        </div>
+      </div>
+      
+      <h2>Desperte a Disciplina e a Sabedoria</h2>
+      
+      <button class="btn-primary" onclick="scrollToOffer()">
+        Quero Meu Ebook Agora
+      </button>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="section fade-in">
+    <h2>Uma Bússola Estratégica Para Sua Transformação</h2>
+    <p>Este ebook foi criado para você utilizar de forma estratégica, como uma bússola na sua jornada em busca da sua melhor versão como pessoa e arrancar as fraquezas dentro de você.</p>
+    
+    <div class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon">🏯</div>
+        <div class="benefit-title">Sabedoria dos Samurais</div>
+        <div class="benefit-desc">Aprenda os princípios milenares de honra e disciplina que moldaram os guerreiros mais respeitados da história</div>
+      </div>
+      
+      <div class="benefit">
+        <div class="benefit-icon">⚔️</div>
+        <div class="benefit-title">Legado dos Cavaleiros</div>
+        <div class="benefit-desc">Descubra o código imortal de disciplina que construiu impérios e transformou homens comuns em lendas</div>
+      </div>
+      
+      <div class="benefit">
+        <div class="benefit-icon">✝️</div>
+        <div class="benefit-title">Fé dos Cruzados</div>
+        <div class="benefit-desc">Desenvolva uma fé inabalável nos seus objetivos e a determinação para superar qualquer obstáculo</div>
+      </div>
+      
+      <div class="benefit">
+        <div class="benefit-icon">🏛️</div>
+        <div class="benefit-title">Coragem dos Gladiadores</div>
+        <div class="benefit-desc">Cultive a coragem suprema necessária para enfrentar os desafios da arena da vida moderna</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Overview -->
+  <section class="section fade-in">
+    <h2>O Que Você Vai Aprender</h2>
+    
+    <div class="content-overview">
+      <div class="chapter">
+        <div class="chapter-number">01</div>
+        <div class="chapter-content">
+          <h4>Introdução</h4>
+          <p>O fundamento estratégico para sua jornada de transformação pessoal</p>
+        </div>
+      </div>
+      
+      <div class="chapter">
+        <div class="chapter-number">02</div>
+        <div class="chapter-content">
+          <h4>Despertando o Guerreiro Interior</h4>
+          <p>Como ativar a mentalidade de guerreiro que existe dormindo dentro de você</p>
+        </div>
+      </div>
+      
+      <div class="chapter">
+        <div class="chapter-number">03</div>
+        <div class="chapter-content">
+          <h4>Disciplina - O Legado Imortal dos Cavaleiros</h4>
+          <p>Os códigos secretos de disciplina que moldaram os maiores guerreiros da história</p>
+        </div>
+      </div>
+      
+      <div class="chapter">
+        <div class="chapter-number">04</div>
+        <div class="chapter-content">
+          <h4>Honra - Seguindo os Passos dos Samurais</h4>
+          <p>Como viver com propósito e integridade seguindo a sabedoria milenar japonesa</p>
+        </div>
+      </div>
+      
+      <div class="chapter">
+        <div class="chapter-number">05</div>
+        <div class="chapter-content">
+          <h4>Fé - Traçando os Caminhos dos Cruzados</h4>
+          <p>Desenvolva uma fé inabalável nos seus objetivos e missão de vida</p>
+        </div>
+      </div>
+      
+      <div class="chapter">
+        <div class="chapter-number">06</div>
+        <div class="chapter-content">
+          <h4>Gladiadores - A Coragem na Arena da Morte</h4>
+          <p>Cultive a coragem suprema para vencer em qualquer arena da vida</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offer Section -->
+  <section class="offer fade-in" id="offer">
+    <h2>Oferta Especial de Lançamento</h2>
+    
+    <div class="countdown-container">
+      <div class="countdown-timer" id="countdown">23:59:45</div>
+      <div class="countdown-label">Tempo restante para este preço</div>
+    </div>
+    
+    <div class="price-container">
+      <span class="price-old">De R$ 19,90</span>
+      <div class="price-new">R$ 15,00</div>
+    </div>
+    
+    <button class="btn-primary" onclick="handlePurchase()" style="font-size: 1.3rem; padding: 22px 50px; margin: 30px 0;">
+      Garantir Meu Ebook Agora
+    </button>
+    
+    <div class="guarantee-box">
+      <div class="guarantee-title">🛡️ Garantia de Satisfação</div>
+      <div class="guarantee-text">
+        ✓ Acesso instantâneo após a compra<br>
+        ✓ Compatível com todos os dispositivos<br>
+        ✓ Garantia de 7 dias - 100% do seu dinheiro de volta se não ficar satisfeito
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <h3>Desperte o Guerreiro que Existe em Você</h3>
+    <p>A disciplina dos samurais, a honra dos cavaleiros, a fé dos cruzados e a coragem dos gladiadores estão esperando por você. Não deixe essa oportunidade passar.</p>
+    
+    <button class="btn-primary" onclick="handlePurchase()" style="font-size: 1.2rem; padding: 20px 45px;">
+      Sim, Quero Me Transformar
+    </button>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2024 O Despertar do Guerreiro Interior - M. Silva</p>
+    <p>Este produto é comercializado com apoio da Hotmart. A plataforma não faz controle editorial prévio dos produtos comercializados.</p>
+  </footer>
+
+  <script>
+    // Smooth scroll
+    function scrollToOffer() {
+      document.getElementById('offer').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    // Purchase redirect
+    function handlePurchase() {
+      const promoExpired = getCookie('promoExpired');
+      
+      if (promoExpired === 'true') {
+        // Redirect to full price link
+        window.open('https://pay.kiwify.com.br/BPapRuf', '_blank');
+      } else {
+        // Redirect to promotional price link
+        window.open('https://bit.ly/Odespertardoguerreirointerior', '_blank');
+      }
+    }
+
+    // Cookie functions
+    function setCookie(name, value, weeks) {
+      const expires = new Date();
+      expires.setTime(expires.getTime() + (weeks * 7 * 24 * 60 * 60 * 1000));
+      document.cookie = name + '=' + value + ';expires=' + expires.toUTCString() + ';path=/';
+    }
+
+    function getCookie(name) {
+      const nameEQ = name + "=";
+      const ca = document.cookie.split(';');
+      for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+      }
+      return null;
+    }
+
+    // Enhanced countdown timer with cookies
+    function startCountdown() {
+      let timeLeft;
+      const savedTime = getCookie('promoTimeLeft');
+      const visitTime = getCookie('firstVisit');
+      const promoExpired = getCookie('promoExpired');
+      
+      // Check if promotion already expired
+      if (promoExpired === 'true') {
+        handleExpiredPromo();
+        return;
+      }
+      
+      if (!visitTime) {
+        // First visit - set 24 hours
+        timeLeft = 24 * 60 * 60;
+        setCookie('firstVisit', new Date().getTime(), 3); // 3 weeks
+        setCookie('promoTimeLeft', timeLeft, 3); // 3 weeks
+      } else if (savedTime) {
+        // Returning visitor - use saved time
+        timeLeft = parseInt(savedTime);
+      } else {
+        // Fallback
+        timeLeft = 24 * 60 * 60;
+      }
+      
+      function updateCountdown() {
+        const hours = Math.floor(timeLeft / 3600);
+        const minutes = Math.floor((timeLeft % 3600) / 60);
+        const seconds = timeLeft % 60;
+        
+        const display = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        
+        const element = document.getElementById('countdown');
+        if (element) element.textContent = display;
+        
+        if (timeLeft > 0) {
+          timeLeft--;
+          // Save current time to cookie every minute
+          if (timeLeft % 60 === 0) {
+            setCookie('promoTimeLeft', timeLeft, 3);
+          }
+          setTimeout(updateCountdown, 1000);
+        } else {
+          // Timer expired
+          setCookie('promoExpired', 'true', 3); // Mark as expired for 3 weeks
+          handleExpiredPromo();
+        }
+      }
+      
+      updateCountdown();
+    }
+
+    // Handle expired promotion
+    function handleExpiredPromo() {
+      const element = document.getElementById('countdown');
+      if (element) {
+        element.textContent = "00:00:00";
+        element.parentElement.querySelector('.countdown-label').textContent = "Promoção Encerrada";
+      }
+      
+      // Update price display
+      const priceOld = document.querySelector('.price-old');
+      const priceNew = document.querySelector('.price-new');
+      if (priceOld && priceNew) {
+        priceOld.textContent = 'Preço Normal';
+        priceOld.style.textDecoration = 'none';
+        priceOld.style.color = '#888';
+        priceNew.textContent = 'R$ 19,90';
+        priceNew.style.fontSize = '3rem';
+      }
+      
+      // Update offer title
+      const offerTitle = document.querySelector('.offer h2');
+      if (offerTitle) {
+        offerTitle.textContent = 'Adquira Seu Ebook Agora';
+      }
+      
+      // Update countdown container
+      const countdownContainer = document.querySelector('.countdown-container');
+      if (countdownContainer) {
+        countdownContainer.style.display = 'none';
+      }
+    }
+
+    // Purchase redirect with price logic
+    function handlePurchase() {
+      const promoExpired = getCookie('promoExpired');
+      
+      if (promoExpired === 'true') {
+        // Redirect to full price link
+        window.open('https://pay.kiwify.com.br/BPapRuf', '_blank');
+      } else {
+        // Redirect to promotional price link
+        window.open('https://bit.ly/Odespertardoguerreirointerior', '_blank');
+      }
+    }
+
+    // Handle image loading
+    function handleImageLoad() {
+      const bookImage = document.querySelector('.book-image');
+      if (bookImage) {
+        bookImage.onerror = function() {
+          console.log('Erro ao carregar capa.jpg - mostrando placeholder');
+          this.style.display = 'none';
+          this.nextElementSibling.style.display = 'block';
+        };
+      }
+    }
+
+    // Scroll animations
+    function handleScrollAnimations() {
+      const elements = document.querySelectorAll('.fade-in');
+      
+      elements.forEach(element => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+        
+        if (elementTop < window.innerHeight - elementVisible) {
+          element.classList.add('visible');
+        }
+      });
+    }
+
+    // Initialize
+    window.addEventListener('scroll', handleScrollAnimations);
+    window.addEventListener('load', function() {
+      handleScrollAnimations();
+      handleImageLoad();
+      startCountdown();
+    });
+  </script>
+</body>
+  </html>
