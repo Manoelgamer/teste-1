@@ -1,3 +1,4 @@
+<!-- Versão: 1.0.0 | Última atualização: 2024-06-07 -->
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -60,7 +61,7 @@
     }
 
     .book-image {
-      max-width: 250px;
+      max-width: 260px;
       width: 100%;
       height: auto;
       border-radius: 12px;
@@ -642,6 +643,7 @@
   <!-- Footer -->
   <footer class="footer">
     <p>&copy; 2025 O Despertar do Guerreiro Interior - M. Silva</p>
+    <p>Versão: 1.0.0</p>
     <p>Este produto é comercializado com apoio da Kwify. A plataforma não faz controle editorial prévio dos produtos comercializados.</p>
   </footer>
 
@@ -656,13 +658,10 @@
     // Purchase redirect
     function handlePurchase() {
       const promoExpired = getCookie('promoExpired');
-      
       if (promoExpired === 'true') {
-        // Redirect to full price link
-        window.open('https://pay.kiwify.com.br/BPapRuf', '_blank');
+        window.open('https://bit.ly/superoferta19Reais', '_blank');
       } else {
-        // Redirect to promotional price link
-        window.open('https://bit.ly/Odespertardoguerreirointerior', '_blank');
+        window.open('https://bit.ly/superoferta15reais', '_blank');
       }
     }
 
@@ -773,9 +772,9 @@
     function handlePurchase() {
       const promoExpired = getCookie('promoExpired');
       if (promoExpired === 'true') {
-        window.open('https://pay.kiwify.com.br/BPapRuf', '_blank');
+        window.open('https://bit.ly/superoferta19Reais', '_blank');
       } else {
-        window.open('https://bit.ly/Odespertardoguerreirointerior', '_blank');
+        window.open('https://bit.ly/superoferta15reais', '_blank');
       }
     }
 
@@ -811,4 +810,5 @@
     });
   </script>
 </body>
+</html>
 </html>
